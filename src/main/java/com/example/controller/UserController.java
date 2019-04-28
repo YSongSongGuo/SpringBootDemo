@@ -2,6 +2,9 @@ package com.example.controller;
 
 import com.example.entity.User;
 import com.example.service.UserService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +26,8 @@ public class UserController {
     private UserService userService;
 
     //新增
+    @ApiOperation(notes = "新增1",value = "新增")
+    @ApiImplicitParams({@ApiImplicitParam(name = "data",value = "{\"userName\":\"名字\",\"age\":\"年龄\",\"sex\":\"性别\"}",dataType = "String",required = true)})
     @PostMapping(value = "/add")
     public String add(@RequestBody String data){
         return  userService.add(data);
